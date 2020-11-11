@@ -13,7 +13,7 @@ import { ProdutoService } from './_services/produto.service';
 // Componentes
 import { AppComponent } from './app.component';
 import {ProdutosComponent} from './produtos/produtos/produtos.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     TooltipModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [ProdutoService],
