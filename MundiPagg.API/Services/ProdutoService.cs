@@ -44,6 +44,7 @@ namespace MundiPagg.API.Services
         public long CountProdutos(){
             return _PRODUTOREP.CountProdutos();
         }
+        
         public ProdutoDto GetProdutoById(string id)
         {
             //_produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();
@@ -76,7 +77,6 @@ namespace MundiPagg.API.Services
             Produto resultin = _mapper.Map<ProdutoDto, Produto>(produtoIn);
             _PRODUTOREP.AtualizaProduto(id, resultin);
         }
-
         
         public void Remove(ProdutoDto produtoIn)
         {
@@ -84,6 +84,7 @@ namespace MundiPagg.API.Services
             //Produto resultin = _mapper.Map<ProdutoDto, Produto>(produtoIn);
             //_produtos.DeleteOne(produto => produto.Id == produtoIn.Id);
         }
+        
         public void Remove(string id)
         { 
             //Produto resultin = _mapper.Map<ProdutoDto, Produto>(produtoIn);

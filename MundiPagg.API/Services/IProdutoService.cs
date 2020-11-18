@@ -5,7 +5,8 @@ namespace MundiPagg.API.Services
 {
     public interface IProdutoService
     {
-         List<ProdutoDto> GetAllProdutos(int numPagina, string categoria);
+        List<ProdutoDto> GetAllProdutos(int numPagina, string categoria);
+        
         long CountProdutos();
         
         ProdutoDto GetProdutoById(string id);

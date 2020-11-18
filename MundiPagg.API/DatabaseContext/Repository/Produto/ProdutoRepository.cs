@@ -50,6 +50,7 @@ namespace MundiPagg.API.DatabaseContext.Repository.Produto
 
             return  _produtos.CountDocuments(x => true);
         }
+        
         public Models.Produto BuscaProdutoByID(string id)
         {
             return _produtos
