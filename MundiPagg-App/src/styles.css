@@ -1,3 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Necessário caso a notifiação não seja exibida
+ por algum problema no CSS */
+#toast-container > div {
+  opacity: 1;
+}
+
+.painel {
+  background-color: #fff;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  -webkit-box-shadow: 3px 1px 5px rgba(50, 50, 50, 0.77);
+  -moz-box-shadow: 3px 1px 5px rgba(50, 50, 50, 0.77);
+  box-shadow: 1px 1px 5px rgba(50, 50, 50, 0.77);
+  position: relative;
+}
+
+.painel_min_height {
+  min-height: 517px;
+  min-width: 720px;
+}
+
+.corpo_painel {
+  padding: 15px 15px;
+}
+
+.fixed_bottom{
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+}
+.icone_coracao{
+  color: #009e9c;
+  font-size: 1.2rem;
+}
+
+.fonte_home{
+  font-weight: bold;
+  font-style: bold;
+  font-size: 2rem;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.paginacao{
+  font-weight: bold;
+}
+
+.table_mundi{
+  background-color: #009e9c;
+}
+
+/**************** BOTÕES *********************/
+
+.btn_padrao {
+  background-color: rgba(000,070,145,1);
+  color: #fff;
+}
+.btn_padrao:hover {
+  background-color: rgba(000,070,145,0.9);
+  opacity: 0.8;
+  color:#fff;
+ }
+
+ .mg_bottom_20 {
+   margin-bottom: 20px;
+ }

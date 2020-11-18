@@ -58,7 +58,9 @@ namespace MundiPagg.API
 
             services.AddCors(
                 options => options.AddDefaultPolicy(
-                    builder => builder.AllowAnyOrigin())
+                    builder => builder.AllowAnyOrigin()
+                                      .AllowAnyMethod()
+                                      .AllowAnyHeader())
             );  
              
 

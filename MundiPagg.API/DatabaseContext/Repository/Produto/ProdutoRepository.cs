@@ -14,13 +14,42 @@ namespace MundiPagg.API.DatabaseContext.Repository.Produto
             _produtos = produtosdb.Connection;
         }
 
-        public List<Models.Produto> ListaProdutos()
+        public List<Models.Produto> ListaProdutos(int pageNumber, 
+                                                  int nPerPage,
+                                                  string categoria)
         {
-            return _produtos
-                    .Find(produto => true)
-                    .ToList();  
+            //Categorias
+            //0=todas, 1=Casa e Eletrodomésticos, 2=Beleza
+            //3=Casa e Eletrodomésticos, 4=Esporte e Lazer
+            //5=Brinquedos, 6=Tecnologia
+           
+
+            //var count = _produtos.EstimatedDocumentCountAsync();
+            //.Find( x => x.Descricao.Equals(filtro) )
+            if ( categoria != "0"){
+                return _produtos
+                    .Find( x => x.Categoria.Equals(categoria))
+                    .SortByDescending(x => x.Id)
+                    .Skip( pageNumber > 0 ? ( ( pageNumber - 1 ) * nPerPage ) : 0 )
+                    .Limit( nPerPage )
+                    .ToList();
+            } else{
+                    return _produtos
+                    .Find( x => true)
+                    .SortByDescending(x => x.Id)
+                    .Skip( pageNumber > 0 ? ( ( pageNumber - 1 ) * nPerPage ) : 0 )
+                    .Limit( nPerPage )
+                    .ToList();
+            }
+                    
+             
         }
 
+        public long CountProdutos(){
+            //long qtd;
+
+            return  _produtos.CountDocuments(x => true);
+        }
         public Models.Produto BuscaProdutoByID(string id)
         {
             return _produtos

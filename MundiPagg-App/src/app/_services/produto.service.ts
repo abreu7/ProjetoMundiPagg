@@ -13,7 +13,23 @@ constructor(private http: HttpClient) { }
     return this.http.get<Produto[]>(`${this.baseUrl}/getprodutos`);
   }
 
-  createProduto(id: string): Observable<Produto[]>{
-    return this.http.get<Produto[]>(`${this.baseUrl}/GetProduto/${id}`);
+  getAllProdutosTeste(numPagina: number, categoria: string){
+    return this.http.get<Produto[]>(`${this.baseUrl}/getprodutos/${numPagina}?categoria=${categoria}`);
+  }
+
+  // createProduto(id: string): Observable<Produto[]>{
+  //   return this.http.get<Produto[]>(`${this.baseUrl}/GetProduto/${id}`);
+  // }
+
+  createProduto(produto: Produto) {
+    return this.http.post(this.baseUrl, produto);
+  }
+
+  editaProduto(produto: Produto) {
+    return this.http.put(`${this.baseUrl}/${produto.id}`, produto);
+  }
+
+  deletaProduto(id: string) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

@@ -26,11 +26,31 @@ namespace MundiPagg.API.Controllers
 
         //[HttpGet]
         [HttpGet("getprodutos/")]
-        public ActionResult<List<ProdutoDto>> GetProdutos()
+        public ActionResult<List<ProdutoDto>> GetProdutos(int numeroPagina)
         {
             try
             {
-                var results = _produtoService.GetAllProdutos();
+                var results = _produtoService.GetAllProdutos(numeroPagina, "teste");
+                //var results = _mapper.Map<List<Produto>, List<ProdutoDto>>(produtos);
+
+                return Ok(results);    
+            }
+            catch (System.Exception ex)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, 
+                                        $"Banco de Dados Falhou ao retornar os Produtos : {ex.Message}");
+            }
+            
+        }
+
+        //[HttpGet]
+        [HttpGet("getprodutos/{numPagina}")]
+        public ActionResult<List<ProdutoDto>> GetProdutosPage(int numPagina, string categoria)
+        {
+            try
+            {
+                var results = _produtoService.GetAllProdutos(numPagina, categoria);
                 //var results = _mapper.Map<List<Produto>, List<ProdutoDto>>(produtos);
 
                 return Ok(results);    

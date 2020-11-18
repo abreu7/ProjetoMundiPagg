@@ -12,7 +12,7 @@ using MundiPagg.API.Models;
 
 namespace MundiPagg.API.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
         //private readonly IMongoCollection<Produto> _produtos;
         private readonly IProdutoRepository _PRODUTOREP;
@@ -30,17 +30,20 @@ namespace MundiPagg.API.Services
             //_produtos = produtosdb.Connection;
         }
 
-        public List<ProdutoDto> GetAllProdutos() 
+        public List<ProdutoDto> GetAllProdutos(int numPagina, string categoria) 
         {
-            List<ProdutoDto> result;
 
-            result = _mapper.Map<List<Produto>, List<ProdutoDto>>(_PRODUTOREP.ListaProdutos());
+            List<ProdutoDto> result = _mapper.Map<List<Produto>, List<ProdutoDto>>(
+                                      _PRODUTOREP.ListaProdutos(numPagina, 5, categoria));
 
             return result;
             //return _produtos.Find(produto => true)
             //        .ToList();         
         }
         
+        public long CountProdutos(){
+            return _PRODUTOREP.CountProdutos();
+        }
         public ProdutoDto GetProdutoById(string id)
         {
             //_produtos.Find<Produto>(produto => produto.Id == id).FirstOrDefault();
@@ -75,7 +78,7 @@ namespace MundiPagg.API.Services
         }
 
         
-        public void Remove(Produto produtoIn)
+        public void Remove(ProdutoDto produtoIn)
         {
             //Definir se esse tipo de deleção será implementado
             //Produto resultin = _mapper.Map<ProdutoDto, Produto>(produtoIn);
